@@ -1,0 +1,33 @@
+
+RAIO_PACMAN = 15
+VELOCIDADE_PACMAN = 1
+
+COR_VERMELHO = (255, 0, 0)
+COR_VERDE = (0, 255, 0)
+COR_AZUL = (0, 0, 255)
+COR_AMARELO = (255, 255, 0)
+COR_PRETO = (0, 0, 0)
+COR_BRANCO = (255, 255, 255)
+
+FRAMES_DO_JOGO = 60
+
+# 1 = PAREDE e 0 = ESPAÇO LIVRE
+LABIRINTO = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+]
+
+TAMANHO_CELULA = 40
+LINHAS = len(LABIRINTO)
+COLUNAS = len(LABIRINTO[0])
+
+LARGURA_TELA = COLUNAS * TAMANHO_CELULA
+ALTURA_TELA = LINHAS * TAMANHO_CELULA + 40
+
+PONTOS_POR_PELLETS = 10
+PONTOS_POR_SUPER_PELLETS = 50
