@@ -62,6 +62,9 @@ class Jogo:
         
 
     def desenhar_pellets(self, tela):
+        """
+        A função é responsável por desenhar o objeto de pontuação no mapa
+        """
         for linha, coluna in self.pellets:
             centro_x = coluna * TAMANHO_CELULA + TAMANHO_CELULA // 2
             centro_y = linha * TAMANHO_CELULA + TAMANHO_CELULA // 2
