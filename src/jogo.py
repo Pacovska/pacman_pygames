@@ -5,6 +5,7 @@ import random
 
 class Jogo:
     """
+      A função é responsável por desenhar o objeto de pontuação no 
     Controla o estado geral da partida: pontuação, pellets restantes. 
     A pontuação é "privado" (self._pontuacao) e só pode ser lido de fora através
     da propriedade "pontuacao".
@@ -30,6 +31,9 @@ class Jogo:
             self._pontuacao += PONTOS_POR_SUPER_PELLETS
 
     def desenhar_labirinto(self, tela):
+        """
+                A função é responsável por desenhar o objeto de pontuação no mapa
+                """
         for linha in range(LINHAS):
             for coluna in range(COLUNAS):
                 if LABIRINTO[linha][coluna] == 1:
@@ -78,4 +82,7 @@ class Jogo:
         
 
     def venceu(self):
+        """
+                A função é responsável por desenhar o objeto de pontuação no mapa
+                """
         return len(self.pellets) == 0
