@@ -1,15 +1,18 @@
 import pygame
 
-from constantes import ALTURA_TELA, COR_PRETO, FRAMES_DO_JOGO, LARGURA_TELA, COR_BRANCO
-from jogo import Jogo
+from constantes import ALTURA_TELA, ARQUIVO_RECORDE, COR_PRETO, FRAMES_DO_JOGO, LARGURA_TELA, COR_BRANCO
+from jogo import Jogo, SemVidasError
 
 def desenhar(tela, jogo, fonte):
     tela.fill(COR_PRETO)
     jogo.desenhar_labirinto(tela)
     jogo.desenhar_pellets(tela)
     jogo.desenha_super_pellets(tela)
+    jogo.desenha_pellets_vida(tela)
     jogo.pacman.desenhar(tela)
-    texto = fonte.render(f"Pontos: {jogo.pontuacao:04d}",True, COR_BRANCO)
+    for fantasma in jogo.fantasmas:
+        fantasma.desenhar(tela)
+    texto = fonte.render(f"Pontos: {jogo.pontuacao:04d} Vidas: {jogo.vidas} Recorde: {jogo.recorde}",True, COR_BRANCO)
     tela.blit(texto, (10, ALTURA_TELA - 32))
     pygame.display.flip()
 
@@ -38,12 +41,20 @@ def main():
                 elif evento.key == pygame.K_DOWN:
                     jogo.pacman.mover("baixo")
 
-        jogo.atualizar()
-
+        try:
+            jogo.atualizar()
+        except SemVidasError:
+            print(f"Fim de jogo! Pontuação: {jogo.pontuacao}")
+            if jogo.pontuacao > jogo.recorde:
+                jogo.salvar_recorde()
+                print(f"Novo recorde salvo em {ARQUIVO_RECORDE}")
         desenhar(tela, jogo, fonte)
 
         if jogo.venceu():
             print(f"Você venceu! Pontuação final {jogo.pontuacao}")
+            if jogo.pontuacao > jogo.recorde:
+                jogo.salvar_recorde()
+                print(f"Novo recorde salvo em {ARQUIVO_RECORDE}")
             rodando = False
 
         relogio.tick(FRAMES_DO_JOGO)
